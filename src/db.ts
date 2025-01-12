@@ -11,6 +11,7 @@ export class DB {
 
   async init() {
     await this.client.connect();
+    console.log('client init');
   }
 
   async close() {

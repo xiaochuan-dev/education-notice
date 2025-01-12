@@ -8,6 +8,7 @@ export async function start() {
   const dataArr1 = await getNeeaListItem();
   for (const item of dataArr1) {
     const exist = await db.checkListitem(item.href);
+    console.log('exist');
     if (!exist) {
       await db.insertListitem(item);
       await sendMail({
