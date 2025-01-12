@@ -26,6 +26,7 @@ jobs:
         run: |
           yarn
           yarn build
+          curl https://cdhrss.chengdu.gov.cn/cdrsj/c151971/sydwzp.shtml
 
       - name: Run
         run: node ./dist/index.js
