@@ -1,6 +1,7 @@
 name: Daily Twice
 
 on:
+  push:
   schedule:
     - cron: '0 9,21 * * *'
   workflow_dispatch:
@@ -26,7 +27,6 @@ jobs:
         run: |
           yarn
           yarn build
-          curl https://ntce.neea.edu.cn/html1/category/1507/1148-1.htm
 
       - name: Run
         run: node ./dist/index.js
