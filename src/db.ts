@@ -1,5 +1,5 @@
 import { Db, MongoClient } from 'mongodb';
-const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&authMechanism=DEFAULT&authSource=admin`;
 
 export class DB {
   public client: MongoClient;
