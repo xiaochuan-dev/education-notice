@@ -1,11 +1,17 @@
-import { Db, MongoClient } from 'mongodb';
-const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/`;
+import { Db, MongoClient, ServerApiVersion } from 'mongodb';
+const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 export class DB {
   public client: MongoClient;
   public database: Db;
   constructor() {
-    this.client = new MongoClient(uri);
+    this.client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
     this.database = this.client.db('education');
   }
 
