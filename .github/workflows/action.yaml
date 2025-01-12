@@ -34,3 +34,4 @@ jobs:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIN_TO: ${{ secrets.MAIN_TO }}
+          GITHUB: "true"
