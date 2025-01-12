@@ -1,0 +1,49 @@
+import { Db, MongoClient } from 'mongodb';
+const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
+export class DB {
+  public client: MongoClient;
+  public database: Db;
+  constructor() {
+    this.client = new MongoClient(uri);
+    this.database = this.client.db('education');
+  }
+
+  async init() {
+    await this.client.connect();
+  }
+
+  async close() {
+    await this.client.close();
+  }
+
+  async insertListitem(data: {
+    title: string;
+    domain: string;
+    href: string
+  }) {
+    try {
+      const collection = this.database.collection('listitem');
+      const doc = data;
+      const result = await collection.insertOne(doc);
+      console.log(`成功插入文档，ID: ${result.insertedId}`);
+    } catch (error) {
+      console.error('创建数据库失败:', error);
+    }
+  }
+
+  async insertPage(data: {
+    content: string;
+    domain: string;
+    href: string;
+  }) {
+    try {
+      const collection = this.database.collection('page');
+      const doc = data;
+      const result = await collection.insertOne(doc);
+      console.log(`成功插入文档，ID: ${result.insertedId}`);
+    } catch (error) {
+      console.error('创建数据库失败:', error);
+    }
+  }
+}

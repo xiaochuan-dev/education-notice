@@ -1,0 +1,24 @@
+{
+  "name": "education-notice",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "jsdom": "^26.0.0",
+    "mongodb": "^6.12.0",
+    "nodemailer": "^6.9.16",
+    "puppeteer-core": "^24.0.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.10.5",
+    "@types/nodemailer": "^6.4.17",
+    "typescript": "^5.7.3"
+  },
+  "packageManager": "yarn@1.22.21+sha512.ca75da26c00327d26267ce33536e5790f18ebd53266796fbb664d2a4a5116308042dd8ee7003b276a20eace7d3c5561c3577bdd71bcb67071187af124779620a"
+}
