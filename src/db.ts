@@ -1,5 +1,5 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://aadad:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 export class DB {
   public client: MongoClient;
@@ -10,7 +10,7 @@ export class DB {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
-      }
+      },
     });
     this.database = this.client.db('education');
   }
