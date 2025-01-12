@@ -1,0 +1,35 @@
+name: Daily Twice
+
+on:
+  schedule:
+    - cron: '0 9,21 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+        run: |
+          node --version
+          corepack enable
+
+      - name: Install And Build
+        run: |
+          yarn
+          yarn build
+
+      - name: Run
+        run: node ./dist/index.js
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }} 
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIN_TO: ${{ secrets.MAIN_TO }}

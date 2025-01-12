@@ -17,11 +17,22 @@ export class DB {
     await this.client.close();
   }
 
-  async insertListitem(data: {
-    title: string;
-    domain: string;
-    href: string
-  }) {
+  async checkListitem(href) {
+    try {
+      const collection = this.database.collection('listitem');
+      const result = await collection.findOne({ href });
+
+      if (result) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async insertListitem(data: { title: string; domain: string; href: string }) {
     try {
       const collection = this.database.collection('listitem');
       const doc = data;
@@ -32,11 +43,7 @@ export class DB {
     }
   }
 
-  async insertPage(data: {
-    content: string;
-    domain: string;
-    href: string;
-  }) {
+  async insertPage(data: { content: string; domain: string; href: string }) {
     try {
       const collection = this.database.collection('page');
       const doc = data;
@@ -47,3 +54,5 @@ export class DB {
     }
   }
 }
+
+export const db = new DB();
