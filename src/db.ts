@@ -1,5 +1,5 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-const uri = `mongodb+srv://aadad:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://xiaochuan:${process.env.DB_PASSWORD}@cluster0.lf4bx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 export class DB {
   public client: MongoClient;
@@ -8,7 +8,7 @@ export class DB {
     this.client = new MongoClient(uri, {
       serverApi: {
         version: ServerApiVersion.v1,
-        strict: true,
+        strict: false,
         deprecationErrors: true,
       },
     });
@@ -43,7 +43,9 @@ export class DB {
     try {
       const collection = this.database.collection('listitem');
       const doc = data;
-      const result = await collection.insertOne(doc);
+      const result = await collection.insertOne(doc, {
+        dbName: 'education',
+      });
       console.log(`成功插入文档，ID: ${result.insertedId}`);
     } catch (error) {
       console.error('创建数据库失败:', error);
