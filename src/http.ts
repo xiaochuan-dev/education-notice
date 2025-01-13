@@ -3,7 +3,7 @@ import { JSDOM } from 'jsdom';
 
 export async function getNeeaListItem() {
   const url = 'https://ntce.neea.edu.cn/html1/category/1507/1148-1.htm';
-  const query = '#first_data a';
+  const query = '.listdiv a';
   const domain = '中国教育考试网-中小学教师资格考试';
 
   const u = new URL(url);

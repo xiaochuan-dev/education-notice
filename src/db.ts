@@ -5,18 +5,13 @@ export class DB {
   public client: MongoClient;
   public database: Db;
   constructor() {
-    this.client = new MongoClient(uri, {
-      serverApi: {
-        version: ServerApiVersion.v1,
-        strict: false,
-        deprecationErrors: true,
-      },
-    });
+    this.client = new MongoClient(uri);
     this.database = this.client.db('education');
   }
 
   async init() {
     await this.client.connect();
+    await this.client.db("admin").command({ ping: 1 });
     console.log('client init');
   }
 
@@ -43,9 +38,7 @@ export class DB {
     try {
       const collection = this.database.collection('listitem');
       const doc = data;
-      const result = await collection.insertOne(doc, {
-        dbName: 'education',
-      });
+      const result = await collection.insertOne(doc);
       console.log(`成功插入文档，ID: ${result.insertedId}`);
     } catch (error) {
       console.error('创建数据库失败:', error);
